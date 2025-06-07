@@ -9,6 +9,7 @@ import { useGetTimeslots } from "../../queries/timeslots/useGetTimeslots";
 import { SkeletonCase } from "@/components/ui/skeletoncase";
 import { militaryToRegularTime } from "../components/helpers/militarytimehelper";
 import { formatInTimeZone } from "date-fns-tz";
+import { AvailableTimeslot } from "@/types/timeslot";
 
 interface TimeSlotsProps {
   submittedProductIds: number[];
@@ -137,48 +138,42 @@ export function TimeSlots({ submittedProductIds }: TimeSlotsProps) {
               className="grid grid-cols-3 md:grid-cols-4 px-0   gap-2 md:gap-5  md:max-w-7xl md:mt-10"
             >
               {availableHours &&
-                availableHours.map(
-                  (hour: { timeslot: Date; green: boolean }) => {
-                    return (
-                      <button
-                        key={hour.timeslot + ""}
-                        className="p-3 rounded-xl text-sm md:text-base min-w-[100px] max-w-[100px] md:min-w-[250px] md:max-w-[250px] hover:cursor-pointer opacity-80 hover:opacity-100 duration-100"
-                        style={{
-                          border:
-                            selectedTimeSlot === hour.timeslot + ""
-                              ? "1px solid  #748bd4"
-                              : "1px solid gray",
-                          opacity:
-                            selectedTimeSlot === hour.timeslot + ""
-                              ? "100%"
-                              : "",
-                          backgroundColor: hour.green
-                            ? "#19750b47"
-                            : "#8c1b1b7a",
-                        }}
-                        onClick={() => {
-                          setSelectedTimeSlot(hour.timeslot + "");
-                          setIsGreen(hour.green);
-                        }}
-                      >
-                        <p>{militaryToRegularTime(hour.timeslot + "")}</p>
-                        {hour.green ? (
-                          <div className="relative flex justify-center gap-2 w-full">
-                            <Leaf stroke="#19750b" />
-                            <p className="hidden md:block">Green Delivery.</p>
-                          </div>
-                        ) : (
-                          <div className="relative flex justify-center gap-2 w-full">
-                            <Clock stroke="#8c1b1b" />
-                            <p className="hidden md:block">
-                              Peak-hour Delivery.{" "}
-                            </p>
-                          </div>
-                        )}
-                      </button>
-                    );
-                  }
-                )}
+                availableHours.map((hour: AvailableTimeslot) => {
+                  return (
+                    <button
+                      key={hour.timeslot + ""}
+                      className="p-3 rounded-xl text-sm md:text-base min-w-[100px] max-w-[100px] md:min-w-[250px] md:max-w-[250px] hover:cursor-pointer opacity-80 hover:opacity-100 duration-100"
+                      style={{
+                        border:
+                          selectedTimeSlot === hour.timeslot + ""
+                            ? "1px solid  #748bd4"
+                            : "1px solid gray",
+                        opacity:
+                          selectedTimeSlot === hour.timeslot + "" ? "100%" : "",
+                        backgroundColor: hour.green ? "#19750b47" : "#8c1b1b7a",
+                      }}
+                      onClick={() => {
+                        setSelectedTimeSlot(hour.timeslot + "");
+                        setIsGreen(hour.green);
+                      }}
+                    >
+                      <p>{militaryToRegularTime(hour.timeslot + "")}</p>
+                      {hour.green ? (
+                        <div className="relative flex justify-center gap-2 w-full">
+                          <Leaf stroke="#19750b" />
+                          <p className="hidden md:block">Green Delivery.</p>
+                        </div>
+                      ) : (
+                        <div className="relative flex justify-center gap-2 w-full">
+                          <Clock stroke="#8c1b1b" />
+                          <p className="hidden md:block">
+                            Peak-hour Delivery.{" "}
+                          </p>
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
             </div>
             <div className="mt-10 mx-0">
               <p>

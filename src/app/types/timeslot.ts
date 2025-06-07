@@ -5,3 +5,8 @@ export type Timeslot = {
     green: boolean;
   };
 };
+
+export type AvailableTimeslot = {
+  timeslot: Date;
+  green: boolean;
+};

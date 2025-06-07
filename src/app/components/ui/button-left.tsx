@@ -1,4 +1,6 @@
-export const ButtonLeft = ({ onClick, width, height }: any) => {
+import { ScrollButtonProps } from "@/types/scrollbutton";
+
+export const ButtonLeft = ({ onClick, width, height }: ScrollButtonProps) => {
   return (
     <div onClick={onClick} style={{ width: width }}>
       <svg
