@@ -38,17 +38,21 @@ export class TimeslotService {
       delayDays = Math.max(delayDays, 3);
     }
     if (hasFresh && currentTime >= 12 && !isTodayAWeekEnd) {
-      // Fresh after 12 --> tomorrow
+      // Fresh after 12 on a weekday --> tomorrow
+      // Fresh after 12 on a weekend --> Monday (nearest business day)
       delayDays = Math.max(delayDays, 1);
     }
     if (hasInStock && currentTime >= 18 && !isTodayAWeekEnd) {
-      // In-stock after 18 --> tomorrow
+      // In-stock after 18  on a weekday --> tomorrow
+      // In-stock after 18 on a weekend --> Monday (nearest business day)
       delayDays = Math.max(delayDays, 1);
     }
 
     let newInterval = current14DayInterval.slice(delayDays);
 
     if (hasExternal) {
+      // No external products on Mondays
+
       newInterval = newInterval.filter((day) => getDay(day) !== 1);
     }
 

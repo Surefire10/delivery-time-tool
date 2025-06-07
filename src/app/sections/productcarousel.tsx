@@ -58,6 +58,7 @@ export function ProductCarousel({
             Choose what you want, skip what you don&apos;t.
           </p>
         </div>
+        {/* 14 days ahead only have 10 business days so I don't think these are necessary  */}
         {productList && productList.length > 0 && (
           <div className="hidden md:flex w-full justify-end items-center mb-5 gap-2">
             <ButtonLeft
