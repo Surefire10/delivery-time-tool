@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { Product } from "../../../lib/products/product";
 import Image from "next/image";
 
@@ -14,8 +15,10 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <label
-      className="relative group w-60 h-72 md:w-auto md:h-auto flex flex-col gap-6 cursor-pointer rounded-2xl p-2 md:p-3 "
-      style={{ border: isChecked ? "1px solid #748bd4" : "1px solid gray" }}
+      className={cn(
+        "relative group w-60 h-72 md:w-auto md:h-auto flex flex-col gap-6 border cursor-pointer rounded-2xl p-2 md:p-3",
+        isChecked ? " border-blue-500" : "border-neutral-600"
+      )}
     >
       <input
         type="checkbox"

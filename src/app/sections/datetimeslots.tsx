@@ -88,7 +88,7 @@ export function TimeSlots({ submittedProductIds }: TimeSlotsProps) {
                     className={cn(
                       "relative flex px-2 pt-4 h-[100px] min-w-[100px] overflow-y-hidden  opacity-80 hover:opacity-100 overflow-x-hidden border border-neutral-500 rounded-lg hover:cursor-pointer duration-100",
                       isSameDay(day, selectedDay) &&
-                        "border border-[#748bd4] opacity-100"
+                        "border border-blue-500 opacity-100"
                     )}
                     key={index}
                   >
@@ -124,7 +124,7 @@ export function TimeSlots({ submittedProductIds }: TimeSlotsProps) {
           <div className="mt-5 md:mt-10">
             <div className="hidden md:flex flex-col">
               <h2 className="text-xl font-bold">Which time works best?</h2>
-              <div className="flex  justify-between gap-1 text-sm">
+              <div className="flex  justify-between gap-1 text-sm items-center">
                 <p className="text-neutral-600">
                   Select whichever timeslot you want.
                 </p>
@@ -142,16 +142,13 @@ export function TimeSlots({ submittedProductIds }: TimeSlotsProps) {
                   return (
                     <button
                       key={hour.timeslot + ""}
-                      className="p-3 rounded-xl text-sm md:text-base min-w-[100px] max-w-[100px] md:min-w-[250px] md:max-w-[250px] hover:cursor-pointer opacity-80 hover:opacity-100 duration-100"
-                      style={{
-                        border:
-                          selectedTimeSlot === hour.timeslot + ""
-                            ? "1px solid  #748bd4"
-                            : "1px solid gray",
-                        opacity:
-                          selectedTimeSlot === hour.timeslot + "" ? "100%" : "",
-                        backgroundColor: hour.green ? "#19750b47" : "#8c1b1b7a",
-                      }}
+                      className={cn(
+                        "relative p-3 rounded-xl text-sm md:text-base min-w-[100px] max-w-[100px] md:min-w-[250px] md:max-w-[250px] hover:cursor-pointer opacity-90 hover:opacity-100 duration-100 border",
+                        selectedTimeSlot === hour.timeslot + ""
+                          ? " border-blue-500"
+                          : "border-neutral-600",
+                        hour.green ? "bg-[#26ff2251]" : "bg-[#fc111162]"
+                      )}
                       onClick={() => {
                         setSelectedTimeSlot(hour.timeslot + "");
                         setIsGreen(hour.green);
@@ -160,12 +157,12 @@ export function TimeSlots({ submittedProductIds }: TimeSlotsProps) {
                       <p>{militaryToRegularTime(hour.timeslot + "")}</p>
                       {hour.green ? (
                         <div className="relative flex justify-center gap-2 w-full">
-                          <Leaf stroke="#19750b" />
+                          <Leaf stroke="white" />
                           <p className="hidden md:block">Green Delivery.</p>
                         </div>
                       ) : (
                         <div className="relative flex justify-center gap-2 w-full">
-                          <Clock stroke="#8c1b1b" />
+                          <Clock stroke="white" />
                           <p className="hidden md:block">
                             Peak-hour Delivery.{" "}
                           </p>

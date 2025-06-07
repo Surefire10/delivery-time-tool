@@ -19,6 +19,7 @@ export class TimeslotService {
 
     const currentTime = new Date().getHours(); //my timezone
     //we get the days within the 14-day allowed interval minus the weekends
+    //only business days are considered
     const current14DayInterval = eachDayOfInterval({
       start: now,
       end: nowPlus14Days,
@@ -30,16 +31,17 @@ export class TimeslotService {
     const hasExternal = cartItems.find((item) => item.type === "external");
     const hasFresh = cartItems.find((item) => item.type === "fresh");
     const hasInStock = cartItems.find((item) => item.type === "in-stock");
+    const isTodayAWeekEnd = isWeekend(new Date());
 
     let delayDays = 0;
     if (hasExternal) {
       delayDays = Math.max(delayDays, 3);
     }
-    if (hasFresh && currentTime >= 12) {
+    if (hasFresh && currentTime >= 12 && !isTodayAWeekEnd) {
       // Fresh after 12 --> tomorrow
       delayDays = Math.max(delayDays, 1);
     }
-    if (hasInStock && currentTime >= 18) {
+    if (hasInStock && currentTime >= 18 && !isTodayAWeekEnd) {
       // In-stock after 18 --> tomorrow
       delayDays = Math.max(delayDays, 1);
     }
