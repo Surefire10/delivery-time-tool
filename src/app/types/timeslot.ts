@@ -3,10 +3,12 @@ export type Timeslot = {
   availableTimeslots: {
     timeslot: Date;
     green: boolean;
+    greenType: string | null;
   };
 };
 
 export type AvailableTimeslot = {
   timeslot: Date;
   green: boolean;
+  greenType: string | null;
 };

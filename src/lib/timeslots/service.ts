@@ -27,6 +27,11 @@ export class TimeslotService {
 
     //start delivery logic
     const greenHours = [10, 13, 14, 21, 22];
+    const greenType = [
+      "Bike couriers",
+      "Recyclable packaging",
+      "Electric delivery cars",
+    ];
 
     const hasExternal = cartItems.find((item) => item.type === "external");
     const hasFresh = cartItems.find((item) => item.type === "fresh");
@@ -67,11 +72,15 @@ export class TimeslotService {
         })
         .map((timeslot) => {
           const time = timeslot.getHours(); //this is fine again;
+          const isGreen = greenHours
+            .slice(0, Math.floor(Math.random() * index - 2)) // slice won't let this overflow so it's fine;
+            .includes(time);
+          const someGreenType =
+            greenType[Math.floor(Math.random() * greenType.length)];
           return {
             timeslot,
-            green: greenHours
-              .slice(0, Math.floor(Math.random() * index - 2)) // slice won't let this overflow so it's fine;
-              .includes(time),
+            green: isGreen,
+            greenType: isGreen ? someGreenType : null,
           };
         })
         .sort((a, b) => {

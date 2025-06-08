@@ -143,9 +143,9 @@ export function TimeSlots({ submittedProductIds }: TimeSlotsProps) {
                     <button
                       key={hour.timeslot + ""}
                       className={cn(
-                        "relative p-3 rounded-xl text-sm md:text-base min-w-[100px] max-w-[100px] md:min-w-[250px] md:max-w-[250px] hover:cursor-pointer opacity-90 hover:opacity-100 duration-100 border",
+                        "relative px-3 rounded-xl text-sm md:text-base min-h-20 min-w-[125px] max-w-[130px] md:min-w-[250px] md:max-w-[250px] hover:cursor-pointer opacity-90 hover:opacity-100 duration-100 border",
                         selectedTimeSlot === hour.timeslot + ""
-                          ? " border-blue-500"
+                          ? " border-white"
                           : "border-neutral-600",
                         hour.green ? "bg-[#26ff2251]" : "bg-[#fc111162]"
                       )}
@@ -156,12 +156,18 @@ export function TimeSlots({ submittedProductIds }: TimeSlotsProps) {
                     >
                       <p>{militaryToRegularTime(hour.timeslot + "")}</p>
                       {hour.green ? (
-                        <div className="relative flex justify-center gap-2 w-full">
-                          <Leaf stroke="white" />
-                          <p className="hidden md:block">Green Delivery.</p>
+                        <div className="relative flex flex-col justify-center w-full mt-2 md:mt-0">
+                          <div className="flex justify-center gap-2">
+                            <Leaf stroke="white" />
+                            <p className="hidden md:block">Green Delivery.</p>
+                          </div>
+
+                          <p className="text-[10px] md:text-xs">
+                            {hour.greenType}.
+                          </p>
                         </div>
                       ) : (
-                        <div className="relative flex justify-center gap-2 w-full">
+                        <div className="relative flex justify-center gap-2 w-full ">
                           <Clock stroke="white" />
                           <p className="hidden md:block">
                             Peak-hour Delivery.{" "}
@@ -180,9 +186,9 @@ export function TimeSlots({ submittedProductIds }: TimeSlotsProps) {
                 .
                 <br />
                 {isGreen ? (
-                  <span className="text-[#19750b]">Environment friendly</span>
+                  <span className="text-[#1f8f0e]">Environment friendly.</span>
                 ) : (
-                  <span className="text-[#8c1b1b]">Carbon-intensive</span>
+                  <span className="text-[#a52121]">Carbon-intensive.</span>
                 )}
               </p>
             </div>
