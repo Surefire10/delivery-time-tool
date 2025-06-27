@@ -48,8 +48,11 @@ This project follows Clean Architecture, as described by Uncle Bob. Here’s how
 
 ### 🧠 Clean Architecture Breakdown
 Interface Adapters ->	API routes (Next.js app/api) that call use cases
+
 Application Layer	-> Core business logic (usecases/) and data interfaces (repositories/)
+
 Domain Entities	-> Simple, pure models (e.g., Product)
+
 Infrastructure	-> implements repository interfaces with mock/static data
 
 ### 📦 Technologies
