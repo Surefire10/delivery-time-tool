@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Product } from "../../../lib/products/product";
+import { Product } from "../../../core/entities/models/product";
 import { ProductCarousel } from "@/sections/productcarousel";
 import { TimeSlots } from "@/sections/datetimeslots";
 

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Product } from "../../../lib/products/product";
+import { Product } from "../../../core/entities/models/product";
 import Image from "next/image";
 
 interface ProductCardProps {

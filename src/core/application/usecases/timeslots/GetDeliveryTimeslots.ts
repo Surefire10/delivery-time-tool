@@ -2,18 +2,14 @@ import { addDays, endOfDay, getDay, isWeekend, startOfDay } from "date-fns";
 import {
   eachDayOfInterval,
   eachHourOfInterval,
-} from "../../app/components/helpers/timezonehelper";
-import { ProductService } from "../products/service";
+} from "@/components/helpers/timezonehelper";
+import { ProductRepository } from "../../repositories/product.repository.interface";
 
-export class TimeslotService {
-  private productService;
+export class GetDeliveryTimeslots {
+  constructor(private readonly productRepo: ProductRepository) {}
 
-  constructor() {
-    this.productService = new ProductService();
-  }
-
-  async getCartTimeslots(ids: string[]) {
-    const cartItems = await this.productService.getProductsByIds(ids);
+  async execute(ids: string[]) {
+    const cartItems = await this.productRepo.getProductsByIds(ids);
     const now = startOfDay(new Date());
     const nowPlus14Days = addDays(now, 14);
 

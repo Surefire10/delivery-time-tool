@@ -1,7 +1,7 @@
 "use client";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import ProductCard from "../components/ui/productcard";
-import { Product } from "../../lib/products/product";
+import { Product } from "../../core/entities/models/product";
 import { ButtonLeft } from "@/components/ui/button-left";
 import { ButtonRight } from "@/components/ui/button-right";
 import { useGetTimeslots } from "../../queries/timeslots/useGetTimeslots";

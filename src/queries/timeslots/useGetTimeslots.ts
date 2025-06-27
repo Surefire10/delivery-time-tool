@@ -7,9 +7,7 @@ export const useGetTimeslots = (productIds: number[]) => {
     queryFn: async () => {
       const params = new URLSearchParams();
       productIds.forEach((id) => params.append("product-ids", id.toString()));
-      const response = await fetch(
-        `/api/timeslots/by-products?${params.toString()}`
-      );
+      const response = await fetch(`/api/timeslots?${params.toString()}`);
       return response.json();
     },
     enabled: !!(productIds.length > 0),

@@ -1,4 +1,4 @@
-import { Product } from "./product";
+import { Product } from "../../core/entities/models/product";
 
 export const products: Product[] = [
   {
