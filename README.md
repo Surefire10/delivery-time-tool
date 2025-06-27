@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🕒 Delivery Time Tool
+A small tool that calculates available delivery timeslots based on cart items, with consideration for product types (e.g., fresh, external, in-stock), time of day, and weekends.
 
-## Getting Started
+This project is structured using Clean Architecture to demonstrate separation of concerns, testability, and maintainability.
 
-First, run the development server:
+✨ Features
+Calculates available delivery slots up to 14 business days in advance.
 
-```bash
+Business logic varies based on:
+
+Product type (fresh, external, in-stock)
+
+Time of order
+
+Day of the week (e.g., weekends excluded)
+
+Marks some time slots as "green" (eco-friendly delivery).
+
+🧱 Architecture
+This project follows Clean Architecture, as described by Uncle Bob. Here’s how the layers are represented:
+
+               [ Interface Adapters ]
+                     API Routes
+                         ↓
+                [ Application Layer ]
+     Use Cases → Repository Interfaces
+                         ↓
+                  [ Infrastructure ]
+          Repository Implementations (Mocked)
+                         ↓
+                  [ Domain Entities ]
+
+
+📁 Folder Structure
+
+├── app/api/timeslots/route.ts         # Controller (Interface Adapter)
+├── core/
+│   ├── application/
+│   │   ├── repositories/              # Repo interfaces
+│   │   └── usecases/                  # Business use cases
+│   ├── entities/
+│   │   └── models/                    # Domain models
+│   └── infrastructure/
+│       └── repositories/              # Repo implementations
+└── lib/                               # Sample/mock data
+
+🧠 Clean Architecture Breakdown
+Interface Adapters ->	API routes (Next.js app/api) that call use cases
+Application Layer	-> Core business logic (usecases/) and data interfaces (repositories/)
+Domain Entities	-> Simple, pure models (e.g., Product)
+Infrastructure	-> implements repository interfaces with mock/static data
+
+📦 Technologies
+Next.js (App Router)
+
+TypeScript
+
+date-fns for date utilities
+
+No database (uses static mock data for simplicity)
+
+🛠️ How to Use
+
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Visit: http://localhost:3000/api/timeslots?product-ids=1&product-ids=2
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Example Request
+GET /api/timeslots?product-ids=1&product-ids=2
+Example Response
+[
+  {
+    "day": "2025-06-27T00:00:00.000Z",
+    "availableTimeslots": [
+      {
+        "timeslot": "2025-06-27T08:00:00.000Z",
+        "green": true,
+        "greenType": "Recyclable packaging"
+      },
+      ...
+    ]
+  }
+]
+🧪 Future Improvements
+Add unit tests for use cases and slot calculation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Replace mock data with a real database or API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build a frontend interface to consume the timeslots
 
-## Learn More
+🧠 Why Clean Architecture?
+This structure makes it easy to:
 
-To learn more about Next.js, take a look at the following resources:
+Replace infrastructure without touching core logic
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Unit test business rules without dealing with frameworks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Reuse use cases across HTTP, CLI, mobile, etc.
 
-## Deploy on Vercel
+Built by me as a Clean Architecture practice project ;(
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
