@@ -1,9 +1,9 @@
-🕒 Delivery Time Tool
+## 🕒 Delivery Time Tool
 A small tool that calculates available delivery timeslots based on cart items, with consideration for product types (e.g., fresh, external, in-stock), time of day, and weekends.
 
 This project is structured using Clean Architecture to demonstrate separation of concerns, testability, and maintainability.
 
-✨ Features
+### ✨ Features
 Calculates available delivery slots up to 14 business days in advance.
 
 Business logic varies based on:
@@ -16,7 +16,7 @@ Day of the week (e.g., weekends excluded)
 
 Marks some time slots as "green" (eco-friendly delivery).
 
-🧱 Architecture
+### 🧱 Architecture
 This project follows Clean Architecture, as described by Uncle Bob. Here’s how the layers are represented:
 
                [ Interface Adapters ]
@@ -31,7 +31,7 @@ This project follows Clean Architecture, as described by Uncle Bob. Here’s how
                   [ Domain Entities ]
 
 
-📁 Folder Structure
+### 📁 Folder Structure
 
 ├── app/api/timeslots/route.ts         # Controller (Interface Adapter)
 ├── core/
@@ -44,13 +44,13 @@ This project follows Clean Architecture, as described by Uncle Bob. Here’s how
 │       └── repositories/              # Repo implementations
 └── lib/                               # Sample/mock data
 
-🧠 Clean Architecture Breakdown
+### 🧠 Clean Architecture Breakdown
 Interface Adapters ->	API routes (Next.js app/api) that call use cases
 Application Layer	-> Core business logic (usecases/) and data interfaces (repositories/)
 Domain Entities	-> Simple, pure models (e.g., Product)
 Infrastructure	-> implements repository interfaces with mock/static data
 
-📦 Technologies
+### 📦 Technologies
 Next.js (App Router)
 
 TypeScript
@@ -59,7 +59,7 @@ date-fns for date utilities
 
 No database (uses static mock data for simplicity)
 
-🛠️ How to Use
+### 🛠️ How to Use
 
 npm install
 npm run dev
@@ -81,14 +81,14 @@ Example Response
     ]
   }
 ]
-🧪 Future Improvements
+### 🧪 Future Improvements
 Add unit tests for use cases and slot calculation
 
 Replace mock data with a real database or API
 
 Build a frontend interface to consume the timeslots
 
-🧠 Why Clean Architecture?
+### 🧠 Why Clean Architecture?
 This structure makes it easy to:
 
 Replace infrastructure without touching core logic
