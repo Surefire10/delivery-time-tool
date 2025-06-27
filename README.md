@@ -64,7 +64,9 @@ No database (uses static mock data for simplicity)
 ### 🛠️ How to Use
 
 npm install
+
 npm run dev
+
 Visit: http://localhost:3000/api/timeslots?product-ids=1&product-ids=2
 
 Example Request
