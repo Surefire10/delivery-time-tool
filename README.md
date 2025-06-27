@@ -33,16 +33,16 @@ This project follows Clean Architecture, as described by Uncle Bob. Here’s how
 
 ### 📁 Folder Structure
 
-├── app/api/timeslots/route.ts         # Controller (Interface Adapter)
+├── app/api/timeslots/route.ts         #Controller (Interface Adapter)
 ├── core/
 │   ├── application/
-│   │   ├── repositories/              # Repo interfaces
-│   │   └── usecases/                  # Business use cases
+│   │   ├── repositories/              #Repo interfaces
+│   │   └── usecases/                  #Business use cases
 │   ├── entities/
-│   │   └── models/                    # Domain models
+│   │   └── models/                    #Domain models
 │   └── infrastructure/
-│       └── repositories/              # Repo implementations
-└── lib/                               # Sample/mock data
+│       └── repositories/              #Repo implementations
+└── lib/                               #Sample/mock data
 
 ### 🧠 Clean Architecture Breakdown
 Interface Adapters ->	API routes (Next.js app/api) that call use cases
@@ -67,6 +67,8 @@ Visit: http://localhost:3000/api/timeslots?product-ids=1&product-ids=2
 
 Example Request
 GET /api/timeslots?product-ids=1&product-ids=2
+
+
 Example Response
 [
   {
@@ -81,6 +83,7 @@ Example Response
     ]
   }
 ]
+
 ### 🧪 Future Improvements
 Add unit tests for use cases and slot calculation
 
